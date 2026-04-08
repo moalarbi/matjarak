@@ -158,7 +158,7 @@ export function PulseFitHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="flex flex-col items-center text-center w-full max-w-xl"
+            className="hero-content flex flex-col items-center text-center w-full max-w-xl"
             style={{ gap: "14px", transform: "scale(0.72)", transformOrigin: "center top" }}
           >
             {/* Title */}

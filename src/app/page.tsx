@@ -45,7 +45,7 @@ export default function Home() {
             onClick: () => {},
           },
           {
-            image: "/projects/vintage.jpg",
+            image: "/projects/vintage.jpg",  /* ضع الصورة في public/projects/vintage.jpg */
             category: "تراث وهدايا",
             title: "متجر عاشق للماضي",
             onClick: () => {},
