@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --yes)",
-      "Bash(npx shadcn@latest init --yes --defaults)"
+      "Bash(npx shadcn@latest init --yes --defaults)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s http://localhost:62685)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:50738)",
+      "Bash(curl -s -X POST -H \"Authorization: token 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\" -H \"Content-Type: application/json\" -d \"{\"\"name\"\":\"\"matjarak\"\",\"\"description\"\":\"\"matjarak\"\",\"\"private\"\":true}\" https://api.github.com/user/repos)"
     ]
   }
 }
