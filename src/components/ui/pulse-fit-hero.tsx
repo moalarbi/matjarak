@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ButtonCta } from "@/components/ui/button-shiny";
@@ -84,6 +84,15 @@ export function PulseFitHero({
   className,
   children,
 }: PulseFitHeroProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <section
       dir="rtl"
@@ -159,7 +168,11 @@ export function PulseFitHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
             className="hero-content flex flex-col items-center text-center w-full max-w-xl"
-            style={{ gap: "14px", transform: "scale(0.72)", transformOrigin: "center top" }}
+            style={{
+              gap: "14px",
+              transform: isMobile ? "scale(0.95)" : "scale(0.72)",
+              transformOrigin: "center top",
+            }}
           >
             {/* Title */}
             <h1 style={{ fontFamily: ibmArabic, fontWeight: 700,
