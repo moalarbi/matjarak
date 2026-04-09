@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { ButtonCta } from "@/components/ui/button-shiny";
 import ShaderBackground from "@/components/ui/shader-background";
 import { AnimatedText } from "@/components/ui/animated-underline-text-one";
+import { Text } from "@/components/ui/text";
 
 interface NavigationItem {
   label: string;
@@ -28,7 +29,7 @@ interface PulseFitHeroProps {
     onClick: () => void;
   };
   title: string;
-  subtitle?: React.ReactNode;
+  subtitle?: React.ReactNode[];
   primaryAction?: {
     label: string;
     onClick: () => void;
@@ -184,21 +185,32 @@ export function PulseFitHero({
             }}
           >
             {/* Title */}
-            <h1 style={{ fontFamily: ibmArabic, fontWeight: 700,
-              fontSize: "clamp(22px, 4vw, 38px)", lineHeight: "1.25",
-              color: COLORS.white, textShadow: "0 2px 30px rgba(0,0,0,0.4)" }}>
+            <Text
+              variant={{ sm: "heading-24", md: "heading-32", lg: "heading-48" }}
+              color="white"
+              align="center"
+              className="font-bold [text-shadow:0_2px_30px_rgba(0,0,0,0.4)]"
+            >
               {title}
-            </h1>
+            </Text>
 
             {/* Subtitle */}
-            {subtitle && (
-              <div style={{
-                display: "flex", flexDirection: "column", gap: "6px",
-                fontFamily: ibmArabic, fontWeight: 400,
-                fontSize: isMobile ? "15px" : "clamp(12px, 1.4vw, 14px)", lineHeight: "1.7",
-                color: COLORS.whiteAlpha80,
-              }}>
-                {subtitle}
+            {subtitle && subtitle.length > 0 && (
+              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                {subtitle.map((line, i) => (
+                  <Text
+                    key={i}
+                    variant={i === 0
+                      ? { sm: "heading-16", md: "heading-20", lg: "heading-24" }
+                      : { sm: "copy-14", md: "copy-16", lg: "copy-20" }
+                    }
+                    color="white-80"
+                    align="center"
+                    className="font-normal"
+                  >
+                    {line}
+                  </Text>
+                ))}
               </div>
             )}
 
@@ -209,7 +221,7 @@ export function PulseFitHero({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.45, delay: 0.3 }}
                 className="flex flex-col sm:flex-row items-center gap-3 w-auto"
-                style={{ marginTop: isMobile ? "64px" : "0", marginBottom: isMobile ? "4px" : "0" }}
+                style={{ marginTop: isMobile ? "24px" : "0", marginBottom: isMobile ? "4px" : "0" }}
               >
                 {primaryAction && (
                   <ButtonCta

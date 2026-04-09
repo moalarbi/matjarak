@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-ibm-arabic), Arial, sans-serif;
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -126,6 +126,19 @@
   }
   html {
     @apply font-sans;
+  }
+
+  :root {
+    --ds-blue-900: oklch(53.18% 0.2399 256.9900584162342);
+    --ds-gray-1000: hsla(0, 0%, 9%, 1);
+    --ds-white: rgba(255, 255, 255, 1);
+    --ds-white-80: rgba(255, 255, 255, 0.80);
+    --ds-white-50: rgba(255, 255, 255, 0.50);
+  }
+
+  .dark {
+    --ds-blue-900: oklch(71.7% 0.1648 250.79360374054167);
+    --ds-gray-1000: hsla(0, 0%, 93%, 1);
   }
 }
 

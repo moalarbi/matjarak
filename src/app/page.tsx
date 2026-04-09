@@ -16,10 +16,10 @@ export default function Home() {
         logo=""
         navigation={[]}
         title="متجرك الإلكتروني الناجح يبدأ معنا"
-        subtitle={<>
-          <span>كل يوم بدون متجر يعني مبيعات راحت عليك</span>
-          <span>نبني لك متجر احترافي جاهز و يبيع خلال 7 أيام</span>
-        </>}
+        subtitle={[
+          "كل يوم بدون متجر يعني مبيعات راحت عليك",
+          "نبني لك متجر احترافي جاهز و يبيع خلال 7 أيام",
+        ]}
         primaryAction={{
           label: "أطلق متجرك الآن",
           onClick: () => window.open(
