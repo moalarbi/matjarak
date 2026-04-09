@@ -7,6 +7,7 @@ import { ButtonCta } from "@/components/ui/button-shiny";
 import ShaderBackground from "@/components/ui/shader-background";
 import { AnimatedText } from "@/components/ui/animated-underline-text-one";
 import { Text } from "@/components/ui/text";
+import { SparklesText } from "@/components/ui/sparkles-text";
 
 interface NavigationItem {
   label: string;
@@ -197,20 +198,28 @@ export function PulseFitHero({
             {/* Subtitle */}
             {subtitle && subtitle.length > 0 && (
               <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                {subtitle.map((line, i) => (
-                  <Text
-                    key={i}
-                    variant={i === 0
-                      ? { sm: "heading-16", md: "heading-20", lg: "heading-24" }
-                      : { sm: "copy-14", md: "copy-16", lg: "copy-20" }
-                    }
-                    color="white-80"
-                    align="center"
-                    className="font-normal"
-                  >
-                    {line}
-                  </Text>
-                ))}
+                {subtitle.map((line, i) =>
+                  i === 0 ? (
+                    <Text
+                      key={i}
+                      variant={{ sm: "heading-16", md: "heading-20", lg: "heading-24" }}
+                      color="white-80"
+                      align="center"
+                      className="font-normal"
+                    >
+                      {line}
+                    </Text>
+                  ) : (
+                    <div key={i} style={{ color: "rgba(255,255,255,0.80)", fontFamily: ibmArabic, textAlign: "center" }}>
+                      <SparklesText
+                        text={String(line)}
+                        colors={{ first: "#00a651", second: "#00ff88" }}
+                        sparklesCount={8}
+                        className={`font-normal ${isMobile ? "text-sm" : "text-base"}`}
+                      />
+                    </div>
+                  )
+                )}
               </div>
             )}
 
