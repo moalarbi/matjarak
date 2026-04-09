@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ButtonCta } from "@/components/ui/button-shiny";
 import ShaderBackground from "@/components/ui/shader-background";
+import { AnimatedText } from "@/components/ui/animated-underline-text-one";
 
 interface NavigationItem {
   label: string;
@@ -60,9 +61,12 @@ const COLORS = {
   whiteAlpha20: "rgba(255,255,255,0.18)",
 };
 
-const CARD_W   = 200;
-const CARD_GAP = 16;
-const CARD_SLOT = CARD_W + CARD_GAP;
+const CARD_W_DESKTOP = 200;
+const CARD_W_MOBILE  = 300;
+const CARD_H_DESKTOP = 270;
+const CARD_H_MOBILE  = 400;
+const CARD_GAP_DESKTOP = 16;
+const CARD_GAP_MOBILE  = 10;
 
 export function PulseFitHero({
   logo = "متجرك ✦",
@@ -93,6 +97,11 @@ export function PulseFitHero({
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  const cardW    = isMobile ? CARD_W_MOBILE    : CARD_W_DESKTOP;
+  const cardH    = isMobile ? CARD_H_MOBILE    : CARD_H_DESKTOP;
+  const cardGap  = isMobile ? CARD_GAP_MOBILE  : CARD_GAP_DESKTOP;
+  const cardSlot = cardW + cardGap;
+
   return (
     <section
       dir="rtl"
@@ -108,8 +117,8 @@ export function PulseFitHero({
         background: "radial-gradient(ellipse 70% 40% at 50% 105%, rgba(0,96,57,0.45) 0%, transparent 70%)" }} />
 
       {/* تموجات شيدر — خلف كل شيء، أسفل الصفحة */}
-      <div className="absolute inset-x-0 pointer-events-none" style={{ zIndex: 0, bottom: "0%", height: "105%" }}>
-        <ShaderBackground opacity={0.15} className="w-full h-full" />
+      <div className="absolute inset-x-0 pointer-events-none" style={{ zIndex: 0, bottom: isMobile ? "38%" : "0%", height: isMobile ? "36%" : "105%", transform: isMobile ? "scaleY(1.6)" : "none", transformOrigin: "center" }}>
+        <ShaderBackground opacity={isMobile ? 0.45 : 0.15} className="w-full h-full" />
       </div>
 
       {/* نقاط ضوئية */}
@@ -162,15 +171,15 @@ export function PulseFitHero({
       {children ? (
         <div className="relative z-10 flex-1 flex items-center justify-center w-full">{children}</div>
       ) : (
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4">
+        <div className={`relative z-10 flex flex-col items-center justify-center px-4 ${isMobile ? "pt-14 pb-6" : "flex-1"}`}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
             className="hero-content flex flex-col items-center text-center w-full max-w-xl"
             style={{
-              gap: "14px",
-              transform: isMobile ? "scale(0.95)" : "scale(0.72)",
+              gap: isMobile ? "12px" : "14px",
+              transform: isMobile ? "none" : "scale(0.72)",
               transformOrigin: "center top",
             }}
           >
@@ -186,7 +195,7 @@ export function PulseFitHero({
               <div style={{
                 display: "flex", flexDirection: "column", gap: "6px",
                 fontFamily: ibmArabic, fontWeight: 400,
-                fontSize: "clamp(12px, 1.4vw, 14px)", lineHeight: "1.7",
+                fontSize: isMobile ? "15px" : "clamp(12px, 1.4vw, 14px)", lineHeight: "1.7",
                 color: COLORS.whiteAlpha80,
               }}>
                 {subtitle}
@@ -200,6 +209,7 @@ export function PulseFitHero({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.45, delay: 0.3 }}
                 className="flex flex-col sm:flex-row items-center gap-3 w-auto"
+                style={{ marginTop: isMobile ? "64px" : "0", marginBottom: isMobile ? "4px" : "0" }}
               >
                 {primaryAction && (
                   <ButtonCta
@@ -227,7 +237,6 @@ export function PulseFitHero({
               </motion.p>
             )}
 
-
             {/* Social Proof */}
             {socialProof && (
               <motion.div
@@ -236,6 +245,7 @@ export function PulseFitHero({
                 transition={{ duration: 0.4, delay: 0.55 }}
                 dir="rtl"
                 style={{
+                  marginTop: isMobile ? "6px" : "0",
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "10px",
@@ -308,11 +318,11 @@ export function PulseFitHero({
       {programs.length > 0 && (
         /* dir="ltr" هنا ضروري: يخلي overflow:hidden يقطع من اليمين لا اليسار */
         <div dir="ltr" className="relative z-10 w-full overflow-hidden"
-          style={{ paddingTop: "36px", paddingBottom: "36px" }}>
+          style={{ paddingTop: isMobile ? "28px" : "36px", paddingBottom: isMobile ? "48px" : "36px", marginTop: isMobile ? "6px" : "0" }}>
 
           <style>{`
             @keyframes marquee-roll {
-              from { transform: translate3d(calc(-${CARD_SLOT}px * ${programs.length}), 0, 0); }
+              from { transform: translate3d(calc(-${cardSlot}px * ${programs.length}), 0, 0); }
               to   { transform: translate3d(0, 0, 0); }
             }
             .marquee-track {
@@ -323,20 +333,14 @@ export function PulseFitHero({
             }
           `}</style>
 
-          {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 z-10 pointer-events-none"
-            style={{ width: "80px", background: `linear-gradient(90deg, ${COLORS.bgDark}, transparent)` }} />
-          <div className="absolute right-0 top-0 bottom-0 z-10 pointer-events-none"
-            style={{ width: "80px", background: `linear-gradient(270deg, ${COLORS.bgDark}, transparent)` }} />
-
           {/* 5 نسخ: نبدأ من النسخة 2 وننتهي عند النسخة 3 — لا فراغ أبداً */}
           <div className="marquee-track flex items-center"
             dir="ltr"
-            style={{ gap: `${CARD_GAP}px`, width: "max-content" }}>
+            style={{ gap: `${cardGap}px`, width: "max-content" }}>
             {[...programs, ...programs, ...programs, ...programs, ...programs].map((program, i) => (
               <div key={i} onClick={program.onClick}
                 className="flex-shrink-0 cursor-pointer relative overflow-hidden"
-                style={{ width: `${CARD_W}px`, height: "270px", borderRadius: "14px",
+                style={{ width: `${cardW}px`, height: `${cardH}px`, borderRadius: "16px",
                   boxShadow: `0 6px 24px rgba(0,0,0,0.5), 0 0 0 1px ${COLORS.tealBorder}`,
                   transition: "transform 0.25s ease" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.transform = "scale(1.05) translateY(-6px)"; }}
@@ -344,17 +348,17 @@ export function PulseFitHero({
               >
                 <img src={program.image} alt={program.title}
                   style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                <div className="absolute inset-0"
-                  style={{ background: "linear-gradient(180deg, rgba(5,15,9,0.0) 30%, rgba(5,15,9,0.88) 100%)" }} />
-                <div className="absolute inset-0"
-                  style={{ background: "radial-gradient(ellipse 80% 30% at 50% 110%, rgba(0,96,57,0.28) 0%, transparent 70%)" }} />
                 <div className="absolute bottom-0 left-0 right-0 p-3"
-                  style={{ display: "flex", flexDirection: "column", gap: "4px" }} dir="rtl">
-                  <span style={{ fontFamily: ibmArabic, fontSize: "10px", fontWeight: 600,
+                  style={{
+                    display: "flex", flexDirection: "column", gap: "4px",
+                    background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.55) 100%)",
+                    paddingTop: "32px",
+                  }} dir="rtl">
+                  <span style={{ fontFamily: ibmArabic, fontSize: isMobile ? "11px" : "10px", fontWeight: 600,
                     color: COLORS.teal, letterSpacing: "0.06em" }}>
                     {program.category}
                   </span>
-                  <h3 style={{ fontFamily: ibmArabic, fontSize: "13px", fontWeight: 600,
+                  <h3 style={{ fontFamily: ibmArabic, fontSize: isMobile ? "14px" : "13px", fontWeight: 600,
                     color: COLORS.white, lineHeight: "1.35" }}>
                     {program.title}
                   </h3>
@@ -364,6 +368,35 @@ export function PulseFitHero({
           </div>
         </div>
       )}
+
+      {/* ─── جملة تحت السلايدر ─── */}
+      <div
+        dir="rtl"
+        className="relative z-10 w-full flex justify-center"
+        style={{ paddingTop: isMobile ? "12px" : "20px", paddingBottom: isMobile ? "28px" : "28px", paddingInline: "24px" }}
+      >
+        <AnimatedText
+          repeatInterval={10000}
+          underlinePath="M 0,10 Q 75,0 150,10 Q 225,20 300,10"
+          underlineHoverPath="M 0,10 Q 75,20 150,10 Q 225,0 300,10"
+          underlineDuration={1.8}
+          text={
+            <span style={{
+              fontFamily: ibmArabic,
+              fontWeight: 600,
+              fontSize: isMobile ? "14px" : "clamp(14px, 1.4vw, 18px)",
+              lineHeight: "1.5",
+              color: COLORS.whiteAlpha80,
+              maxWidth: "480px",
+              display: "block",
+            }}>
+              شكل متجرك يأثر بنسبة{" "}
+              <span style={{ color: COLORS.teal, fontWeight: 700 }}>90%</span>{" "}
+              على قرار الشراء من عملائك
+            </span>
+          }
+        />
+      </div>
     </section>
   );
 }

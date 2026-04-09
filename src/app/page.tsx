@@ -19,7 +19,6 @@ export default function Home() {
         subtitle={<>
           <span>كل يوم بدون متجر يعني مبيعات راحت عليك</span>
           <span>نبني لك متجر احترافي جاهز و يبيع خلال 7 أيام</span>
-          <span>نجهزلك متجرك بشكل صحيح وانت تركز على ادارته</span>
         </>}
         primaryAction={{
           label: "أطلق متجرك الآن",
