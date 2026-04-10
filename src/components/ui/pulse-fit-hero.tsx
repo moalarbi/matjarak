@@ -68,7 +68,7 @@ const CARD_W_MOBILE  = 300;
 const CARD_H_DESKTOP = 270;
 const CARD_H_MOBILE  = 400;
 const CARD_GAP_DESKTOP = 16;
-const CARD_GAP_MOBILE  = 10;
+const CARD_GAP_MOBILE  = 20;
 
 export function PulseFitHero({
   logo = "متجرك ✦",

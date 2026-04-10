@@ -38,61 +38,61 @@ export default function Home() {
         }}
         programs={[
           {
-            image: "/projects/nilofer.jpg",
+            image: "/projects/p1.jpg",
             category: "فاشون وأكسسوارات",
             title: "متجر نيلوفر",
             onClick: () => {},
           },
           {
-            image: "/projects/vintage.jpg",  /* ضع الصورة في public/projects/vintage.jpg */
+            image: "/projects/p2.jpg",
             category: "تراث وهدايا",
             title: "متجر عاشق للماضي",
             onClick: () => {},
           },
           {
-            image: "/projects/متجر-خطوتي.jpg",
+            image: "/projects/p3.jpg",
             category: "أحذية ورياضة",
             title: "متجر خطوتي",
             onClick: () => {},
           },
           {
-            image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=500&fit=crop",
+            image: "/projects/p4.jpg",
             category: "تجارة إلكترونية",
             title: "متجر أزياء عصري",
             onClick: () => {},
           },
           {
-            image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=500&fit=crop",
+            image: "/projects/p5.jpg",
             category: "منتجات رقمية",
             title: "متجر كتب وكورسات",
             onClick: () => {},
           },
           {
-            image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=500&fit=crop",
+            image: "/projects/p6.jpg",
             category: "بوتيك",
             title: "متجر إكسسوارات فاخرة",
             onClick: () => {},
           },
           {
-            image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=500&fit=crop",
+            image: "/projects/p7.jpg",
             category: "فوتوغرافي",
             title: "متجر مستلزمات تصوير",
             onClick: () => {},
           },
           {
-            image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=500&fit=crop",
+            image: "/projects/p8.jpg",
             category: "إلكترونيات",
             title: "متجر أجهزة تقنية",
             onClick: () => {},
           },
           {
-            image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=500&fit=crop",
+            image: "/projects/p9.jpg",
             category: "رياضة",
             title: "متجر معدات رياضية",
             onClick: () => {},
           },
           {
-            image: "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400&h=500&fit=crop",
+            image: "/projects/p10.jpg",
             category: "عطور وعناية",
             title: "متجر عطور فاخرة",
             onClick: () => {},
