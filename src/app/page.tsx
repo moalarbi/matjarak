@@ -29,10 +29,10 @@ export default function Home() {
         }}
         socialProof={{
           avatars: [
-            "https://i.pravatar.cc/150?img=11",
-            "https://i.pravatar.cc/150?img=22",
-            "https://i.pravatar.cc/150?img=33",
-            "https://i.pravatar.cc/150?img=44",
+            "/client-1.jpg",
+            "/client-2.jpg",
+            "/client-3.jpg",
+            "/client-4.jpg",
           ],
           text: "انضم لأكثر من 500+ عميل معنا",
         }}
